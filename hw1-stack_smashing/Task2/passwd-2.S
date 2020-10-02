@@ -1,26 +1,31 @@
+
 		.global _start
 
 		.text
 _start:
 		# open(/etc/passwd)
-		mov		$2, %rax
+		xor		%rax, %rax
+		inc		%rax
+		inc		%rax
 		mov		$path, %rdi
-		mov		$0, %rsi
+		xor		%rsi, %rsi
 		syscall
 
 		# read(/etc/passwd)
 		mov 	%rax, %rdi
-		sub 	$0xfff, %rsp
+		sub 	$2556, %rsp
 		lea 	0x08(%rsp), %rsi
-		mov		$0xfff,%rdx
+		mov		$2556,%rdx
 		xor 	%rax, %rax
 		syscall
 
 		# write(/etc/passwd)
-		mov     $1, %rax                # system call 1 is write
-        mov     $1, %rdi                # file handle 1 is stdout
+		xor		%rax, %rax                  # system call 1 is write
+		inc		%rax
+        xor		%rdi, %rdi					# file handle 1 is stdout
+		inc		%rdi                
 	    mov		%rsp, %rsi
-        mov     $0xfff, %rdx               # number of bytes
+        mov     $2556, %rdx               # number of bytes
         syscall 
 
 		

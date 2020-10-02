@@ -3,9 +3,11 @@
 		.text
 _start:
 		# open(/etc/passwd)
-		mov		$2, %rax
+		xor		%rax, %rax
+		inc		%rax
+		inc		%rax
 		mov		$path, %rdi
-		mov		$0, %rsi
+		xor		%rsi, %rsi
 		syscall
 
 		# read(/etc/passwd)
@@ -17,8 +19,10 @@ _start:
 		syscall
 
 		# write(/etc/passwd)
-		mov     $1, %rax                # system call 1 is write
-        mov     $1, %rdi                # file handle 1 is stdout
+		xor		%rax, %rax                  # system call 1 is write
+		inc		%rax
+        xor		%rdi, %rdi					# file handle 1 is stdout
+		inc		%rdi                
 	    mov		%rsp, %rsi
         mov     $40, %rdx               # number of bytes
         syscall 
