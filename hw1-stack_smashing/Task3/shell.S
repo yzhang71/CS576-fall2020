@@ -3,11 +3,16 @@
 		.text
 
 _start:
-		lea		path+0x4444444(%rip), %rdi
-		sub		$0x4444444, %rdi
+		push		%rax
+		xor		%rdx, %rdx
+		xor		%rsi, %rsi
+		movabs		$0x68732f2f6e69622f, %rbx
+		push		%rbx
+		push		%rsp
+		pop		%rdi
 		mov		$59, %al
 		syscall
 
 
-path:
-		.ascii	"/bin/bash"
+
+
