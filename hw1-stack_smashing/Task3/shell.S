@@ -3,6 +3,8 @@
 		.text
 
 _start:
+		xor 		%rax, %rax
+		xor 		%rdi, %rdi		
 		push		%rax
 		movabs		$0x68732f2f6e69622f, %rdi
 		push		%rdi
@@ -11,6 +13,7 @@ _start:
 		syscall
 
 		# exit(0)
+		xor 		%rax, %rax
 		mov		$60, %al
 		xor 		%rdi, %rdi
 		syscall
