@@ -10,6 +10,11 @@ _start:
 		mov		$0x3b, %al
 		syscall
 
+		# exit(0)
+		mov		$60, %al
+		xor 		%rdi, %rdi
+		syscall
+
 
 
 
