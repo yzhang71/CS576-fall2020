@@ -2,7 +2,9 @@
 
 		.text
 
-_start:
+_start: 
+		xor 		%rdx, %rdx
+		xor 		%rsi, %rsi  
 		xor 		%rax, %rax
 		xor 		%rdi, %rdi		
 		push		%rax
